@@ -1,42 +1,41 @@
-# 📊 Pokémon Combat Power (CP) Predictive Analysis
+# 📊 Pokémon Total Stats Predictive Analysis
 
 [![Python](https://img.shields.io/badge/Python-3.x-blue.svg)](https://www.python.org/)
 [![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458.svg)](https://pandas.pydata.org/)
-[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Machine%20Learning-orange.svg)](https://scikit-learn.org/)
+[![Statsmodels](https://img.shields.io/badge/Statsmodels-Statistical%20Modeling-orange.svg)](https://www.statsmodels.org/)
 
 ## 📌 Project Overview
-Proyek ini adalah studi kasus **Data Science** yang bertujuan untuk memprediksi *Combat Power* (CP) Pokémon berdasarkan atribut fisiknya (HP, Attack, Defense, dll) menggunakan teknik **Analisis Regresi Linear**.
+Proyek ini adalah studi kasus **Data Science** yang bertujuan untuk membedah hubungan antara atribut fisik Pokémon (*HP, Attack, Defense, Sp. Atk, Sp. Def, Speed*) dengan kekuatan keseluruhannya (**Total Stats**).
 
-Fokus utama proyek ini bukan hanya prediksi, melainkan **Statistical Inference** (menggunakan OLS - *Ordinary Least Squares*) untuk memahami variabel mana yang memiliki korelasi paling signifikan terhadap kekuatan tempur sebuah Pokémon. Proyek ini mendemonstrasikan siklus lengkap analisis data mulai dari *Data Cleaning*, *Exploratory Data Analysis (EDA)*, hingga *Model Evaluation*.
+Menggunakan metode **OLS (Ordinary Least Squares) Regression**, proyek ini membuktikan secara statistik bagaimana setiap atribut berkontribusi terhadap nilai total. Analisis ini mencakup pembersihan data (*renaming columns*), eksplorasi korelasi (*heatmap*), dan validasi hipotesis.
 
-## 🔍 Key Insights & Methodology
+## 🔍 Key Methodology & Insights
 
-### 1. Exploratory Data Analysis (EDA)
-Saya melakukan analisis korelasi antar variabel menggunakan **Heatmap Visualization**.
-* **Temuan Utama:** Terdapat korelasi positif yang kuat antara *Evolution Stage* dan *Total Stats* terhadap CP.
-* **Distribusi Data:** Menggunakan histogram untuk melihat persebaran tipe Pokémon (Legendary vs Non-Legendary).
+### 1. Data Preprocessing
+Dataset asli memiliki penamaan kolom yang mengandung spasi dan karakter khusus (contoh: `Sp. Atk`).
+* **Action:** Melakukan *renaming* kolom menjadi format yang aman untuk pemrograman (`Sp_Atk`, `Sp_Def`) agar kompatibel dengan formula regresi Statsmodels.
+* **Target Variable:** Menggunakan kolom `Total` sebagai variabel dependen (Y).
 
-<img width="542" height="468" alt="image" src="https://github.com/user-attachments/assets/8a32b96f-4f1c-4920-85cb-e4c6f84e9ee1" />
+### 2. Exploratory Data Analysis (EDA)
+Menggunakan **Correlation Heatmap** untuk memvisualisasikan hubungan antar variabel.
+* **Temuan:** Semua variabel statistik individu memiliki korelasi positif yang kuat terhadap `Total`.
 
-
-### 2. Statistical Modeling (OLS Regression)
-Menggunakan library `statsmodels` untuk melakukan uji statistik mendalam:
-* **R-squared Score:** Digunakan untuk mengukur seberapa baik model menjelaskan variansi data.
-* **P-value Analysis:** Untuk menentukan signifikansi statistik dari setiap fitur (Attack, Defense, Speed).
-
-### 3. Predictive Modeling
-Membangun model **Linear Regression** menggunakan `scikit-learn` untuk memprediksi nilai CP pada data uji (Test Set).
+### 3. Statistical Modeling (OLS Results)
+Model regresi menunjukkan hasil yang sangat menarik:
+* **R-squared Score:** **1.000** (Perfect Fit).
+* **Interpretasi:** Nilai ini mengonfirmasi secara matematis bahwa variabel `Total` pada dataset Pokémon adalah hasil penjumlahan linear sempurna dari keenam statistik dasarnya, tanpa ada koefisien tersembunyi atau *error term* yang signifikan.
+* **P-value:** 0.000 (Semua variabel signifikan secara statistik).
 
 ## 🛠️ Tech Stack
 * **Language:** Python
 * **Data Manipulation:** Pandas, NumPy
 * **Visualization:** Seaborn, Matplotlib
-* **Statistical Analysis:** Statsmodels
-* **Machine Learning:** Scikit-learn (Linear Regression, Train-Test Split)
+* **Statistical Analysis:** Statsmodels (OLS Regression)
+* **Machine Learning:** Scikit-learn
 
 ## 📂 File Structure
-* `Pokemon Analysis.ipynb`: Jupyter Notebook berisi seluruh kode analisis.
-* `pokemon.csv`: Dataset yang digunakan (sumber: Kaggle/Database publik).
+* `Pokemon Analysis.ipynb`: Jupyter Notebook berisi kode lengkap (Preprocessing, EDA, OLS).
+* `Pokemon.csv`: Dataset standar yang digunakan (sumber: Kaggle).
 * `README.md`: Dokumentasi proyek.
 
 ## 🚀 How to Run
@@ -49,7 +48,7 @@ Membangun model **Linear Regression** menggunakan `scikit-learn` untuk mempredik
     pip install pandas numpy seaborn matplotlib scikit-learn statsmodels
     ```
 3.  **Run Notebook**
-    Jalankan file `.ipynb` di Jupyter Notebook atau VS Code.
+    Jalankan file `.ipynb` di Jupyter Notebook atau VS Code. Pastikan file `Pokemon.csv` berada di folder yang sama.
 
 ## 👤 Author
 **Olfat Harits Alatas**
@@ -57,4 +56,4 @@ Membangun model **Linear Regression** menggunakan `scikit-learn` untuk mempredik
 * **Connect:** [LinkedIn](https://www.linkedin.com/in/olfat-harits-alatas-ba626722b)
 
 ---
-*Disclaimer: Data used is for educational and analytical purposes.*
+*Disclaimer: This project uses a standard Pokémon dataset for educational and analytical demonstration purposes.*
